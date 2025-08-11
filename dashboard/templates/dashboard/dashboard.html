@@ -1,0 +1,33 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+  <!-- Dashboard Content -->
+  <main class="p-6 flex-1 overflow-y-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+      <div class="bg-white rounded-xl shadow p-4 border-l-4 border-blue-900">
+        <h3 class="text-sm font-semibold text-gray-500">Projects</h3>
+        <p class="text-2xl font-bold text-blue-900">24</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-4 border-l-4 border-green-500">
+        <h3 class="text-sm font-semibold text-gray-500">Clients</h3>
+        <p class="text-2xl font-bold text-green-600">18</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-4 border-l-4 border-yellow-500">
+        <h3 class="text-sm font-semibold text-gray-500">Revenue</h3>
+        <p class="text-2xl font-bold text-yellow-600">₦850k</p>
+      </div>
+    </div>
+
+    <!-- Charts / Additional Widgets -->
+    <div class="bg-white rounded-xl shadow p-6">
+      <h2 class="text-lg font-semibold text-blue-900 mb-4">Recent Activity</h2>
+      <ul class="space-y-3 text-sm text-gray-700">
+        <li>✔ New client registered</li>
+        <li>✔ CRM dashboard updated</li>
+        <li>✔ Invoice #204 paid</li>
+      </ul>
+    </div>
+  </main>
+</div>
+{% endblock %}

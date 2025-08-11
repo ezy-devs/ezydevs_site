@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login | Ezydevs Technologies{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .login-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        animation: fadeInUp 0.8s ease-in-out;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.08);
+        border: none;
+        color: #fff;
+    }
+
+    .form-control:focus {
+        background-color: rgba(255, 255, 255, 0.12);
+        box-shadow: none;
+        color: #fff;
+    }
+
+    .btn-primary {
+        background: linear-gradient(90deg, #16a34a, #22c55e);
+        border: none;
+        font-weight: bold;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+    }
+
+    .hero-text {
+        animation: fadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+<section class="min-h-screen flex items-center justify-center bg-gray-900">
+    <div class="bg-gray-800 shadow-2xl rounded-2xl p-8 max-w-md w-full text-white animate__animated animate__fadeInUp">
+        <!-- Logo & Title -->
+        <div class="text-center mb-6">
+            <img src="{% static 'img/ezydevs_logo.jpg' %}" alt="Ezydevs" class="mx-auto w-16 h-16">
+            <h2 class="text-2xl font-bold mt-4">Welcome Back</h2>
+            <p class="text-gray-400 text-sm">Login to continue to your dashboard.</p>
+        </div>
+
+        <!-- Django Form -->
+        <form method="post" action="{% url 'login' %}" id="loginForm" novalidate>
+            {% csrf_token %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <!-- Email -->
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-semibold mb-1">Email Address</label>
+                <input type="email" id="email" name="email" required
+                    class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="you@example.com">
+                <small id="emailFeedback" class="text-red-400 hidden"></small>
+                <small class="text-gray-400 text-sm">We'll never share your email with anyone else.</small>
+                {% if form.email.errors %}
+                <p class="text-red-400 text-sm mt-1">{{ form.email.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-semibold mb-1">Password</label>
+                <input type="password" id="password" name="password" required
+                    class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="••••••••">
+                <div class="mt-1 h-2 bg-gray-600 rounded-full">
+                    <div id="passwordStrength" class="h-2 rounded-full bg-red-500 w-1/4 transition-all duration-300">
+                    </div>
+                </div>
+                <small id="passwordFeedback" class="text-gray-400 text-sm"></small>
+                {% if form.password.errors %}
+                <p class="text-red-400 text-sm mt-1">{{ form.password.errors.0 }}</p>
+                {% endif %}
+            </div>
+            <button type="submit"
+                class="w-full bg-gradient-primary hover:brightness-110 transition duration-300 py-2 rounded-lg font-semibold">
+                Login
+            </button>
+            <div class="mt-3 text-center">
+                <small>Don't have an account? <a href="{% url 'register' %}" class="text-success">Register</a></small>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const emailFeedback = document.getElementById('emailFeedback');
+        const passwordFeedback = document.getElementById('passwordFeedback');
+
+        emailInput.addEventListener('input', function () {
+            if (emailInput.validity.typeMismatch) {
+                emailFeedback.textContent = 'Please enter a valid email address.';
+                emailFeedback.classList.remove('hidden');
+            } else {
+                emailFeedback.textContent = '';
+                emailFeedback.classList.add('hidden');
+            }
+        });
+
+        passwordInput.addEventListener('input', function () {
+            if (passwordInput.value.length < 8) {
+                passwordFeedback.textContent = 'Password must be at least 8 characters long.';
+            } else {
+                passwordFeedback.textContent = '';
+            }
+        });
+    });
+</script>
+    {% endblock %}

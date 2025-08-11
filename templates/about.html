@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - Ezydevs Technologies{% endblock %}
+
+{% block content %}
+<!-- Particle Background -->
+<div id="particles-js" class="fixed inset-0 z-0"></div>
+
+<!-- About Section -->
+<section class="relative z-10 text-white py-20 px-6 md:px-16 lg:px-32 bg-gradient-to-br from-[#0A0F1C] via-[#0F1A2D] to-[#05080F]">
+    <div class="max-w-6xl mx-auto">
+        <!-- Heading -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-400 via-green-400 to-teal-300 bg-clip-text text-transparent">
+                About Ezydevs Technologies
+            </h1>
+            <p class="mt-4 text-gray-300 max-w-2xl mx-auto">
+                Building Africa’s leading technology powerhouse — creating scalable AI-powered SaaS products, 
+                driving financial inclusion, and solving real-world problems through smart, intuitive software.
+            </p>
+        </div>
+
+        <!-- Company Story -->
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Text -->
+            <div>
+                <h2 class="text-2xl font-semibold mb-4">Our Vision</h2>
+                <p class="text-gray-300 mb-6 leading-relaxed">
+                    At <strong>Ezydevs Technologies</strong>, we envision a future where technology is accessible, intelligent, 
+                    and transformative for businesses of all sizes. Our mission is to simplify technology, 
+                    making it a tool for growth and innovation across Africa and beyond.
+                </p>
+
+                <h2 class="text-2xl font-semibold mb-4">What We Do</h2>
+                <ul class="list-disc pl-5 text-gray-300 space-y-2">
+                    <li>Web & Mobile App Development</li>
+                    <li>AI Solutions & Automation</li>
+                    <li>Digital Marketing & Branding</li>
+                    <li>Custom Software Development</li>
+                    <li>Fintech & Financial Inclusion Tools</li>
+                </ul>
+            </div>
+
+            <!-- Image -->
+            <div class="relative">
+                <img src="{% static 'img/about-team.jpg' %}" alt="Our Team" class="rounded-2xl shadow-lg border border-gray-700">
+                <div class="absolute -top-4 -left-4 w-20 h-20 border-4 border-blue-400 rounded-full animate-pulse"></div>
+                <div class="absolute -bottom-4 -right-4 w-20 h-20 border-4 border-green-400 rounded-full animate-pulse"></div>
+            </div>
+        </div>
+
+        <!-- Core Values -->
+        <div class="mt-20">
+            <h2 class="text-center text-3xl font-bold mb-8">Our Core Values</h2>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="p-6 bg-white/5 rounded-xl border border-gray-700 hover:bg-white/10 transition duration-300">
+                    <h3 class="text-xl font-semibold mb-3 text-blue-400">Innovation</h3>
+                    <p class="text-gray-300 text-sm">We constantly explore disruptive ideas and technologies to stay ahead.</p>
+                </div>
+                <div class="p-6 bg-white/5 rounded-xl border border-gray-700 hover:bg-white/10 transition duration-300">
+                    <h3 class="text-xl font-semibold mb-3 text-green-400">Impact</h3>
+                    <p class="text-gray-300 text-sm">We build solutions that solve real problems and create opportunities.</p>
+                </div>
+                <div class="p-6 bg-white/5 rounded-xl border border-gray-700 hover:bg-white/10 transition duration-300">
+                    <h3 class="text-xl font-semibold mb-3 text-teal-300">Collaboration</h3>
+                    <p class="text-gray-300 text-sm">We believe in partnerships, teamwork, and shared success.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Particle JS -->
+<script src="{% static 'js/particles.min.js' %}"></script>
+<script>
+    particlesJS.load('particles-js', '{% static "js/particles-config.json" %}', function() {
+        console.log('Particles.js config loaded');
+    });
+</script>
+{% endblock %}

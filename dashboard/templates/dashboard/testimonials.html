@@ -1,0 +1,55 @@
+{% extends 'dashboard/base.html' %}
+
+{% load static %}
+{% block title %}Testimonials Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- Main Content -->
+<div class="mt-1 space-y-4 flex-1">
+    <header class="bg-brand text-white shadow-md rounded-xl">
+        <div class="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+            <h1 class="text-3xl font-bold">Testimonials Dashboard</h1>
+            <a href="{% url 'add_testimony' %}"
+                class="bg-white text-blue-900 font-semibold px-5 py-2 rounded-full shadow hover:bg-gray-100 transition">
+                + Add Testimony
+            </a>
+        </div>
+    </header>
+
+    <!-- Testimonials Table -->
+    <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
+        <table class="min-w-full table-auto">
+            <thead class="bg-gray-200">
+                <tr>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Name</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Designation</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Testimony</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="text-sm font-medium text-gray-700">
+                {% for testimony in testimonies %}
+                <tr class="border-t">
+                    <td class="px-6 py-4">{{ testimony.name }}</td>
+                    <td class="px-6 py-4">{{ testimony.designation }}</td>
+                    <td class="px-6 py-4">{{ testimony.content|truncatewords:20 }}</td>
+                    <td class="px-6 py-4 flex space-x-4">
+                        <!-- Edit Button -->
+                        <a href="{% url 'edit_testimony' testimony.id %}"
+                            class="text-blue-500 hover:text-blue-700">Edit</a>
+                        <!-- Delete Button -->
+                        <a href="{% url 'delete_testimony' testimony.id %}"
+                            class="text-red-500 hover:text-red-700">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="px-6 py-4 text-center text-gray-500">No testimonies available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

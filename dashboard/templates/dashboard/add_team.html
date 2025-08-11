@@ -1,0 +1,25 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}Add Team {% endblock %}
+{% block content %}
+
+  <div class="max-w-3xl mx-auto mt-12 p-6 bg-white shadow-lg rounded-xl">
+    <h2 class="text-2xl font-bold text-blue-900 mb-6">Add New Team</h2>
+
+    <form method="POST" enctype="multipart/form-data" class="space-y-5">
+      {% csrf_token %}
+      <div>
+            {{form.as_p}}
+        </div>
+
+      <div class="pt-4">
+        <button type="submit" class="bg-blue-900 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition duration-200">
+          Save Team
+        </button>
+        <a href="{% url 'team_dashboard' %}" class="ml-4 text-blue-900 hover:underline">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+{% endblock %}
+

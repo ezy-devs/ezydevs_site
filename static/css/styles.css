@@ -1,0 +1,92 @@
+  /* Hamburger to X toggle styles */
+    #mobile-menu-btn.open .line1 {
+      transform: translateY(6px) rotate(45deg);
+    }
+    #mobile-menu-btn.open .line2 {
+      opacity: 0;
+    }
+    #mobile-menu-btn.open .line3 {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+ 
+    /* Custom animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      animation: fadeUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    /* Animate cards on scroll */
+    .card-animate {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+    .card-animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Button hover glow */
+    .btn-glow:hover {
+      box-shadow: 0 0 15px 3px rgba(13, 216, 160, 0.7);
+    }
+
+    /* Hamburger lines */
+    #mobile-menu-btn line {
+      transition: all 0.3s ease;
+    }
+    #mobile-menu-btn.open .line1 {
+      transform: translateY(6px) rotate(45deg);
+    }
+    #mobile-menu-btn.open .line2 {
+      opacity: 0;
+    }
+    #mobile-menu-btn.open .line3 {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+		@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+    /* Adjust 30s for speed: lower is faster */
+  }
+.animate-fadeUp {
+  animation-name: fadeUp;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+		@keyframes cardAnimate {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+		.card-animate {
+			animation-name: cardAnimate;
+			animation-duration: 0.6s;
+			animation-fill-mode: forwards;
+			animation-timing-function: ease-out;
+		}
+
+ 

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="bg-gradient-to-br from-background via-gray-900 to-black py-20 text-white">
+  <div class="container mx-auto px-6">
+
+    <!-- Header -->
+    <div class="text-center mb-12 animate-fadeIn">
+      <h2 class="text-4xl font-extrabold text-primary">Get in Touch</h2>
+      <p class="mt-3 text-secondary/90 max-w-xl mx-auto">
+        We’d love to hear from you! Contact us for partnerships, inquiries, or custom tech solutions.
+      </p>
+    </div>
+
+    <!-- Contact Content -->
+    <div class="grid md:grid-cols-2 gap-10">
+      
+      <!-- Contact Form -->
+      <form class="bg-white text-gray-900 p-8 rounded-xl shadow-lg space-y-6 transform transition duration-500 hover:scale-[1.02] animate-slideInLeft" method="post" action="{% url 'contact' %}">
+        {% csrf_token %}
+        
+        {% if messages %}
+          {% for message in messages %}
+            <div class="p-3 rounded-lg mb-2 text-sm {% if message.tags == 'success' %}bg-green-100 text-green-700{% else %}bg-red-100 text-red-700{% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="w-full bg-gradient-primary text-background font-bold py-3 rounded-lg shadow-md hover:shadow-lg transition transform hover:scale-105">
+          Send Message 🚀
+        </button>
+      </form>
+
+      <!-- Contact Info -->
+      <div class="flex flex-col justify-between bg-gradient-to-br from-primary to-accent text-background p-8 rounded-xl shadow-lg animate-slideInRight">
+        <div>
+          <h3 class="text-2xl font-extrabold mb-4">Contact Information</h3>
+          <p class="mb-2">📍 Gboko, Benue State, Nigeria</p>
+          <p class="mb-2">📞 +234 905 070 9538</p>
+          <p class="mb-4">📧 contact@ezydevs.com</p>
+        </div>
+
+        <!-- Social Links -->
+        <div class="mt-6 space-x-4">
+          <a href="#" class="inline-block hover:text-background/80 transition"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="#" class="inline-block hover:text-background/80 transition"><i class="fab fa-twitter"></i> Twitter</a>
+          <a href="#" class="inline-block hover:text-background/80 transition"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Map -->
+    <div class="mt-16 animate-fadeInUp">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.930044110387!2d8.9992670748969!3d7.336842414104203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x105a3dba73a66add%3A0x76a78cf34acdfd62!2sEzydevs%20Technologies!5e0!3m2!1sen!2sng!4v1715533985607!5m2!1sen!2sng" 
+        class="w-full h-80 rounded-lg border-0 shadow-lg"
+        allowfullscreen=""
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Animations -->
+<style>
+@keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+@keyframes fadeInUp { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+@keyframes slideInLeft { from {opacity: 0; transform: translateX(-30px);} to {opacity: 1; transform: translateX(0);} }
+@keyframes slideInRight { from {opacity: 0; transform: translateX(30px);} to {opacity: 1; transform: translateX(0);} }
+
+.animate-fadeIn { animation: fadeIn 1s ease-out forwards; }
+.animate-fadeInUp { animation: fadeInUp 1s ease-out forwards; }
+.animate-slideInLeft { animation: slideInLeft 1s ease-out forwards; }
+.animate-slideInRight { animation: slideInRight 1s ease-out forwards; }
+</style>
+{% endblock %}

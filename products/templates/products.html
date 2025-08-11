@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Products - Ezydevs Technologies{% endblock %}
+
+{% block content %}
+<main class="flex-grow pt-24 max-w-7xl mx-auto px-6 text-secondary">
+
+  <h1 class="text-4xl md:text-5xl font-extrabold text-primary mb-12 text-center">Our Products</h1>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+    {% for product in products %}
+      <div class="bg-background/80 rounded-lg shadow-card p-6 flex flex-col hover:shadow-lg transition">
+        <img src="{{ product.image_url }}" alt="{{ product.name }}" class="h-24 mx-auto mb-6" />
+        <h2 class="text-2xl font-semibold text-primary mb-3 text-center">{{ product.name }}</h2>
+        <p class="text-secondary mb-6 text-center">{{ product.short_description }}</p>
+
+        {% if product.is_available %}
+          <a href="{% url 'product_detail' slug=product.slug %}"
+             class="mt-auto inline-block text-primary font-semibold text-center border border-primary rounded-md px-4 py-2 hover:bg-primary/20 transition">
+            Learn More
+          </a>
+        {% else %}
+          <span class="block mt-auto text-center text-primary font-semibold opacity-50 cursor-not-allowed">Coming Soon</span>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p class="text-center text-secondary/70 col-span-full">No products available at the moment.</p>
+    {% endfor %}
+
+  </div>
+
+</main>
+{% endblock %}
