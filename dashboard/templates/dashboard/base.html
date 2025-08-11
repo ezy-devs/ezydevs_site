@@ -29,9 +29,9 @@
 </style>
   <!-- Sidebar -->
   {% block sidebar %}
-  <div :class="sidebarOpen ? 'block' : 'hidden'" class="fixed inset-0 z-40 md:hidden" @click="sidebarOpen = false"></div>
+  <div class="sidebarOpen ? 'block' : 'hidden'" class="fixed inset-0 z-40 md:hidden" @click="sidebarOpen = false"></div>
 
-  <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed z-50 inset-y-0 left-0 w-64 bg-blue-900 text-white transform md:translate-x-0 transition-transform duration-200 ease-in-out">
+  <aside class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed z-50 inset-y-0 left-0 w-64 bg-blue-900 text-white transform md:translate-x-0 transition-transform duration-200 ease-in-out">
     <div class="p-4 text-2xl font-bold">Ezydevs</div>
     <nav class="mt-6 space-y-2 px-4">
       <a href="{% url 'dashboard' %}" class="block py-2 px-3 rounded hover:bg-blue-700">Dashboard</a>
