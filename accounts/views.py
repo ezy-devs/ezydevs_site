@@ -16,7 +16,7 @@ class RegisterView(CreateView):
     def get_success_url(self):
         if self.request.user.is_staff or self.request.user.is_superuser:
             return reverse_lazy("dashboard")
-        return reverse_lazy("/")
+        return reverse_lazy("home")
     
     def form_valid(self, form):
         user = form.save(commit=False)
@@ -37,7 +37,7 @@ class UserLoginView(TemplateView):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('dashboard') if user.is_staff or user.is_superuser else redirect('/')
+            return redirect('dashboard') if user.is_staff or user.is_superuser else redirect('home')
         else:
             messages.error(request, "Invalid email or password")
             return render(request, self.template_name, {'form': CustomUserLoginForm()})

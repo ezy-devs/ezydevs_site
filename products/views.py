@@ -5,13 +5,13 @@ from .forms import ProductForm
 
 class ProductListView(ListView):
     model = Product
-    template_name = 'products.html'
+    template_name = 'products/products.html'
     context_object_name = 'products'
     queryset = Product.objects.filter(is_available=True).order_by('-created_at')
 
 class ProductDetailView(DetailView):
     model = Product
-    template_name = 'product_detail.html'
+    template_name = 'products/product_detail.html'
     context_object_name = 'product'
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
@@ -19,13 +19,13 @@ class ProductDetailView(DetailView):
 class ProductCreateView(CreateView):
     model = Product
     form_class = ProductForm
-    template_name = 'product_form.html'
+    template_name = 'products/product_form.html'
     success_url = reverse_lazy('products_list')
 
 class ProductUpdateView(UpdateView):
     model = Product
     form_class = ProductForm
-    template_name = 'product_form.html'
+    template_name = 'products/product_form.html'
     success_url = reverse_lazy('products_list')
     slug_field = 'slug'
     slug_url_kwarg = 'slug'

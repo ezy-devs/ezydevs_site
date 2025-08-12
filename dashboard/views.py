@@ -7,7 +7,7 @@ from .forms import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def dashboard(request):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -15,7 +15,7 @@ def dashboard(request):
     
     return render(request, 'dashboard/dashboard.html')
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def testimonials_dashboard(request):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -25,7 +25,7 @@ def testimonials_dashboard(request):
     return render(request, 'dashboard/testimonials.html', {'testimonies': testimonies})
 
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def add_testimony(request):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -41,7 +41,7 @@ def add_testimony(request):
 
     return render(request, 'dashboard/add_testimony.html', {'form': form})
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def edit_testimony(request, id):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -59,7 +59,7 @@ def edit_testimony(request, id):
     return render(request, 'dashboard/edit_testimony.html', {'form': form, 'testimony':testimony})
     
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def delete_testimony(request, id):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -70,7 +70,7 @@ def delete_testimony(request, id):
     messages.success(request, 'Testimony deleted successfully!')
     return redirect('testimonials_dashboard')
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def services_dashboard(request):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -81,7 +81,7 @@ def services_dashboard(request):
 
 
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def add_service(request):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -98,7 +98,7 @@ def add_service(request):
     return render(request, 'dashboard/add_service.html', {'form': form})
 
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def delete_service(request, id):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -110,7 +110,7 @@ def delete_service(request, id):
     return redirect('services_dashboard')
 
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def edit_service(request, id):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -127,7 +127,7 @@ def edit_service(request, id):
         form = ServiceForm(instance=service)
     return render(request, 'dashboard/edit_service.html', {'form': form, 'service':service})
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def team_dashboard(request):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -136,7 +136,7 @@ def team_dashboard(request):
     teams = Team.objects.all()
     return render(request, 'dashboard/team.html', {'teams': teams})
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def add_team(request):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -155,7 +155,7 @@ def add_team(request):
         form = TeamForm()
     return render(request, 'dashboard/add_team.html', {'form': form})
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def edit_team(request, id):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -175,7 +175,7 @@ def edit_team(request, id):
         form = TeamForm(instance=team)
     return render(request, 'dashboard/add_team.html', {'form': form})
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def delete_team(request, id):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -186,7 +186,7 @@ def delete_team(request, id):
     messages.success(request, 'Team deleted successfully!')
     return redirect('team_dashboard')
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def products_dashboard(request):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -195,7 +195,7 @@ def products_dashboard(request):
     products = Product.objects.all()
     return render(request, 'dashboard/products.html', {'products': products})
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def add_project(request):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -214,7 +214,7 @@ def add_project(request):
         form = ProductForm()
     return render(request, 'dashboard/add_project.html', {'form': form})
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def edit_project(request, id):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
@@ -234,7 +234,7 @@ def edit_project(request, id):
         form = ProductForm(instance=project)
     return render(request, 'dashboard/edit_project.html', {'form': form})
 
-@login_required(login_url='login_user')
+@login_required(login_url='login')
 def delete_project(request, id):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to access this page.")
