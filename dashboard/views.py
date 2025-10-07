@@ -7,6 +7,8 @@ from .forms import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
+
+
 @login_required(login_url='login')
 def dashboard(request):
     if not request.user.is_superuser:

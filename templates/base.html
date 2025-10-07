@@ -8,7 +8,7 @@
   <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <link rel="icon" href="{% static '/img/favicon.ico' %}" type="image/x-icon" />
+  <link rel="icon" href="{% static '/img/ezydevs_logo.jpg' %}" type="image/x-icon" />
   
   <meta name="description" content="Ezydevs Technologies delivers AI-powered SaaS products, secure identity verification, and scalable software solutions for African businesses and global partners." />
   <meta name="keywords" content="AI SaaS, African tech, Identity verification, Business automation, E-commerce, Software development" />
@@ -37,7 +37,7 @@
             primary: '#0dd8a0',   // green accent
             secondary: '#d8dcdf', // light blue
             accent: '#f6b26b',    // gold
-            background: '#0b0f14',// dark slate bg
+            background: '#0b0f14', // dark slate bg
           },
           backgroundImage: {
             'gradient-primary': 'linear-gradient(90deg, #0dd8a0 0%, #d8dcdf 100%)',
@@ -55,34 +55,21 @@
       plugins: [],
     }
   </script>
-<style>
-  /* Custom style for fixed full-screen particles */
-.particles-bg {
-    position: fixed;  /* stays fixed in place */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;       /* stays behind your content */
-    background: transparent; /* background handled by particles.js */
-    pointer-events: none; /* allows clicking through */
-}
 
-</style>
 
 </head>
 
 <body class="text-secondary font-sans min-h-screen">
 <!-- Particles Background -->
-<div id="particles-js" class="particles-bg"></div>
+
 
 <header class="fixed top-0 w-full bg-gradient-dark-theme shadow-nav z-50">
   <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
     <!-- Left: Logo + Brand Name -->
     <a href="/" class="flex items-center space-x-2">
-      <img src="{% static '/img/ezydevs_logo.jpg' %}" alt="Ezydevs Technologies" class="h-8 w-10" />
-      <span class="text-lg font-semibold text-secondary select-none">Ezydevs Technologies</span>
+      <img src="{% static '/img/ezydevs_logo.jpg' %}" alt="Ezydevs Technologies" class="h-8 w-10 rounded-xl" />
+      <span class="text-lg font-semibold text-secondary select-none">Ezydevs</span>
     </a>
 
     <!-- Center: Navigation Links -->
@@ -98,7 +85,7 @@
     <!-- Right: Request Demo CTA (desktop only) -->
   <div class="flex items-center space-x-4"> 
     {% if request.user.is_authenticated %}
-    <a href="{% url 'logout' %}" class="hidden md:inline-block text-secondary hover:text-primary transition">Logout</a>
+    <a href="{% url 'logout' %}" class="hidden md:inline-block text-secondary hover:text-red-500 transition">Logout</a>
     
     {% if request.user.is_staff or request.user.is_superuser %}
     <a href="{% url 'dashboard' %}" class="hidden md:inline-block bg-gradient-primary text-background font-semibold px-4 py-2 rounded-md hover:brightness-110 transition">
@@ -128,7 +115,7 @@
   </nav>
 
   <!-- Mobile Menu (hidden by default) -->
-  <div id="mobile-menu" class="hidden bg-gradient-dark-theme text-secondary px-6 py-4 space-y-4 md:hidden">
+  <div id="mobile-menu" class="min-h-screen hidden bg-gradient-dark-theme text-secondary px-6 py-4 space-y-4 md:hidden">
     <a href="/" class="block hover:text-primary transition">Home</a>
     <a href="{% url 'products_list' %}" class="block hover:text-primary transition">Products</a>
     <a href="{% url 'services' %}" class="block hover:text-primary transition">Services</a>
@@ -155,19 +142,26 @@
 
 {% block content %} {% endblock %}
   <!-- FOOTER -->
-  <footer class="bg-gradient-dark-theme py-12 mt-20 text-secondary/90">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-background">
+   <style>
+    .footer-rounded {
+      border-top-left-radius: 25%;
+      border-top-right-radius: 25%;
+    }
+    /*text-gradient-to-br from-background via-gray-900*/
+   </style>
+  <footer class="bg-gradient-dark-theme py-12 mt-20 text-white-900 footer-rounded">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 ">
       
       <div>
         <h3 class="text-xl font-bold mb-4">Ezydevs Technologies</h3>
-        <p class="max-w-sm text-background/80">
+        <p class="max-w-sm text-white-900">
           Building intelligent software solutions to empower African businesses and global partners.
         </p>
       </div>
 
       <div>
         <h4 class="font-semibold mb-4">Quick Links</h4>
-        <ul class="space-y-2 text-background/90">
+        <ul class="space-y-2 text-white-900">
           <li><a href="/" class="hover:text-accent transition">Home</a></li>
           <li><a href="{% url 'products_list' %}" class="hover:text-accent transition">Products</a></li>
           <li><a href="{% url 'services' %}" class="hover:text-accent transition">Services</a></li>
@@ -179,8 +173,8 @@
 
       <div>
         <h4 class="font-semibold mb-4">Contact Us</h4>
-        <p class="text-background/90 mb-2">Email: <a href="mailto:info@ezydevstech.com" class="hover:text-accent transition">info@ezydevstech.com</a></p>
-        <p class="text-background/90 mb-4">Phone: <a href="tel:+2349050709538" class="hover:text-accent transition">+234 905 070 9538</a></p>
+        <p class="text-white-900 mb-2">Email: <a href="mailto:info@ezydevstech.com" class="hover:text-accent transition">info@ezydevstech.com</a></p>
+        <p class="text-white-900 mb-4">Phone: <a href="tel:+2349050709538" class="hover:text-accent transition">+234 905 070 9538</a></p>
         <div class="flex space-x-4">
           <a href="https://github.com/ezy-devs" target="_blank" rel="noopener" aria-label="GitHub" class="hover:text-accent transition">
             <!-- GitHub Icon SVG -->
@@ -192,7 +186,7 @@
 
     </div>
 
-    <div class="text-background/80 text-center mt-12 text-sm">
+    <div class="text-white-900 text-center mt-12 text-sm">
       &copy; 2025 Ezydevs Technologies. All rights reserved.
     </div>
   </footer>
@@ -222,18 +216,6 @@
     cards.forEach(card => observer.observe(card));
   </script>
   <!-- Particles.js Script -->
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script>
-particlesJS("particles-js", {
-    particles: {
-        number: { value: 60 },
-        size: { value: 3 },
-        move: { speed: 1 },
-        //line_linked: { enable: true, color: "#00ffcc" },
-        line_linked: { enable: true, color: "#00ffcc", opacity: 0.5 }
 
-    }
-});
-</script>
 </body>
 </html>
