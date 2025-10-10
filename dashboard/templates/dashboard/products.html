@@ -1,57 +1,57 @@
-
 {% extends 'dashboard/base.html' %}
 {% load static %}
 {% block title %}Products | Ezydevs Technologies{% endblock %}
 {% block content %}
 
-  <!-- Header -->
-  <header class="bg-brand text-white shadow-md rounded-xl">
-    <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
-      <h1 class="text-3xl font-bold">Products Dashboard</h1>
-      <a href="{% url 'add_product' %}" class="bg-white text-blue-900 font-semibold px-5 py-2 rounded-full shadow hover:bg-gray-100 transition">
-        + Add Project
-      </a>
-    </div>
-  </header>
+<!-- Header -->
+<header class="bg-gray-900/70 backdrop-blur-md text-white shadow-md rounded-xl border border-gray-800">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Products Dashboard</h1>
+    <a href="{% url 'add_product' %}" class="bg-blue-700 hover:bg-blue-600 text-white font-semibold px-5 py-2 rounded-full shadow transition">
+      + Add Product
+    </a>
+  </div>
+</header>
 
-  <!-- Main Content -->
-  <main class="mt-1 space-y-4 flex-1">
-    <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
-        <table class="min-w-full table-auto">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Image</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Title</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Link</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Description</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Actions</th>
-                </tr>
-            </thead>
-            <tbody class="text-sm font-medium text-gray-700">
-                {% for product in products %}
-                <tr class="border-t">
-                    <td class="px-6 py-4"><img src="{{ product.image.url }}" class="w-4 h-4 rounded-2xl" alt=""></td>
-                    <td class="px-6 py-4">{{ project.title }}</td>
-                    <td class="px-6 py-4"><a href="{{ project.link }}" target="_blank">{{ product.link }}</a></td>
-                    <td class="px-6 py-4">{{ project.description|truncatewords:5 }}</td>
-                    <td class="px-6 py-4 flex space-x-4">
-                        <!-- Edit Button -->
-                        <a href="{% url 'edit_product' product.slug %}"
-                            class="text-blue-500 hover:text-blue-700">Edit</a>
-                        <!-- Delete Button -->
-                        <a href="{% url 'delete_product' product.slug %}"
-                            class="text-red-500 hover:text-red-700">Delete</a>
-                    </td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="4" class="px-6 py-4 text-center text-gray-500">No projects available</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<!-- Main Content -->
+<main class="mt-6 space-y-6">
+  {% if products %}
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    {% for product in products %}
+    <div class="bg-gray-900/70 backdrop-blur-md border border-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+      <div class="relative">
+        <img src="{{ product.image.url }}" alt="{{ product.title }}" class="w-full h-40 object-cover rounded-t-2xl">
+        <div class="absolute top-2 right-2 bg-gray-800/60 px-2 py-1 text-xs rounded-full text-gray-300">
+          {{ forloop.counter }}
+        </div>
+      </div>
+
+      <div class="p-4">
+        <h2 class="text-lg font-semibold text-white mb-1 truncate">{{ product.title }}</h2>
+        <p class="text-gray-400 text-sm mb-2 line-clamp-2">{{ product.description|truncatewords:10 }}</p>
+
+        {% if product.link %}
+        <a href="{{ product.link }}" target="_blank" class="inline-flex items-center text-blue-400 text-sm hover:underline">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 3h7m0 0v7m0-7L10 14" />
+          </svg>
+          Visit
+        </a>
+        {% endif %}
+
+        <div class="mt-4 flex items-center justify-between text-sm">
+          <a href="{% url 'edit_product' product.slug %}" class="text-blue-400 hover:text-blue-300 font-medium">Edit</a>
+          <a href="{% url 'delete_product' product.slug %}" class="text-red-400 hover:text-red-300 font-medium">Delete</a>
+        </div>
+      </div>
     </div>
-    
-  </main>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="text-center py-12 bg-gray-900/70 backdrop-blur-md border border-gray-800 rounded-xl">
+    <p class="text-gray-400">No products available. Click “Add Product” to get started.</p>
+  </div>
+  {% endif %}
+</main>
 
 {% endblock %}

@@ -4,164 +4,185 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{% block title %} {% endblock %}</title>
-  <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+
+  <title>{% block title %}Ezydevs Technologies{% endblock %}</title>
+
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <link rel="icon" href="{% static '/img/ezydevs_logo.jpg' %}" type="image/x-icon" />
-  
+
+  <!-- Custom Styles -->
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'img/ezydevs_logo.jpg' %}" type="image/x-icon" />
+
+  <!-- Default SEO Meta -->
   <meta name="description" content="Ezydevs Technologies delivers AI-powered SaaS products, secure identity verification, and scalable software solutions for African businesses and global partners." />
   <meta name="keywords" content="AI SaaS, African tech, Identity verification, Business automation, E-commerce, Software development" />
-  <meta name="author" content="Tersugh Emmanuel Nzorov, Ezydevs Technologies" />
+  <meta name="author" content="Ezydevs Technologies" />
 
-  <!-- Open Graph / Facebook -->
+  <!-- Social Meta -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ezydevstech.com/" />
   <meta property="og:title" content="Ezydevs Technologies — Intelligent African Tech" />
   <meta property="og:description" content="Delivering AI-powered SaaS, secure identity verification, and scalable software for African businesses and global partners." />
   <meta property="og:image" content="https://ezydevstech.com/static/img/ezydevs_logo.jpg" />
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://ezydevstech.com/" />
   <meta name="twitter:title" content="Ezydevs Technologies — Intelligent African Tech" />
   <meta name="twitter:description" content="Delivering AI-powered SaaS, secure identity verification, and scalable software for African businesses and global partners." />
   <meta name="twitter:image" content="https://ezydevstech.com/static/img/ezydevs_logo.jpg" />
-  
+  <link rel="canonical" href="https://ezydevstech.com{% block canonical_path %}{% endblock %}" />
+
+  {% block meta %}{% endblock %}
+
+  <!-- Tailwind Custom Config -->
   <script>
     tailwind.config = {
-      darkMode: 'class', // enable dark mode by class
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            primary: '#0dd8a0',   // green accent
-            secondary: '#d8dcdf', // light blue
-            accent: '#f6b26b',    // gold
-            background: '#0b0f14', // dark slate bg
+            primary: '#0dd8a0',
+            secondary: '#d8dcdf',
+            accent: '#f6b26b',
+            background: '#0b0f14',
           },
           backgroundImage: {
-            'gradient-primary': 'linear-gradient(90deg, #0dd8a0 0%, #d8dcdf 100%)',
-            'gradient-accent': 'linear-gradient(90deg, #f6b26b 0%, #d8dcdf 100%)',
             'gradient-dark-theme': 'linear-gradient(135deg, #0b0f14 0%, #0dd8a0 70%, #f6b26b 100%)',
           },
           fontFamily: {
             sans: ['Inter', 'Poppins', 'ui-sans-serif', 'system-ui'],
           },
           boxShadow: {
-            nav: '0 2px 6px rgba(0,0,0,0.7)',
+            glow: '0 0 20px rgba(13,216,160,0.5)',
           },
         },
       },
-      plugins: [],
-    }
+    };
   </script>
 
+  <style>
+    /* Floating glow background (3D atmosphere) */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(13,216,160,0.15) 0%, transparent 70%);
+      z-index: -1;
+      animation: floatGlow 20s ease-in-out infinite alternate;
+    }
+    body::before {
+      top: -100px;
+      left: -150px;
+    }
+    body::after {
+      bottom: -120px;
+      right: -180px;
+      animation-delay: 5s;
+    }
+    @keyframes floatGlow {
+      from { transform: translateY(0) scale(1); }
+      to { transform: translateY(-30px) scale(1.1); }
+    }
 
+    /* 3D hover for cards/buttons */
+    .hover-3d {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .hover-3d:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(13, 216, 160, 0.25);
+    }
+
+    /* Navbar glass blur */
+    .nav-blur {
+      backdrop-filter: blur(14px);
+      background: rgba(11, 15, 20, 0.85);
+    }
+  </style>
+
+  {% block header_scripts %}{% endblock %}
 </head>
 
-<body class="text-secondary font-sans min-h-screen">
-<!-- Particles Background -->
+<body class="text-secondary font-sans min-h-screen bg-background overflow-x-hidden">
+  <!-- Header -->
+  <header class="fixed top-0 w-full nav-blur shadow-nav z-50 border-b border-gray-800">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="/" class="flex items-center space-x-2 hover-3d">
+        <img src="{% static 'img/ezydevs_logo.jpg' %}" alt="Ezydevs Technologies Logo" class="h-8 w-10 rounded-xl shadow-glow" />
+        <span class="text-lg font-semibold text-secondary">Ezydevs</span>
+      </a>
 
+      <ul class="hidden md:flex space-x-8 font-medium">
+        <li><a href="{% url 'home' %}" class="hover:text-primary transition">Home</a></li>
+        <li><a href="{% url 'products_list' %}" class="hover:text-primary transition">Products</a></li>
+        <li><a href="{% url 'services' %}" class="hover:text-primary transition">Services</a></li>
+        <li><a href="{% url 'about' %}" class="hover:text-primary transition">About</a></li>
+        <li><a href="/blog" class="hover:text-primary transition">Blog</a></li>
+        <li><a href="{% url 'contact' %}" class="hover:text-primary transition">Contact</a></li>
+      </ul>
 
-<header class="fixed top-0 w-full bg-gradient-dark-theme shadow-nav z-50">
-  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <div class="flex items-center space-x-4">
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'logout' %}" class="hidden md:inline-block hover:text-red-500 transition">Logout</a>
+          {% if request.user.is_staff or request.user.is_superuser %}
+            <a href="{% url 'dashboard' %}" class="hidden md:inline-block bg-gradient-to-r from-primary to-accent text-background font-semibold px-4 py-2 rounded-md hover-3d">Dashboard</a>
+          {% endif %}
+        {% else %}
+          <a href="{% url 'login' %}" class="hidden md:inline-block hover:text-primary transition">Login</a>
+          <a href="{% url 'contact' %}" class="hidden md:inline-block bg-gradient-to-r from-primary to-accent text-background font-semibold px-4 py-2 rounded-md hover-3d">Request Demo</a>
+        {% endif %}
+      </div>
 
-    <!-- Left: Logo + Brand Name -->
-    <a href="/" class="flex items-center space-x-2">
-      <img src="{% static '/img/ezydevs_logo.jpg' %}" alt="Ezydevs Technologies" class="h-8 w-10 rounded-xl" />
-      <span class="text-lg font-semibold text-secondary select-none">Ezydevs</span>
-    </a>
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" aria-label="Toggle navigation" class="md:hidden text-secondary focus:outline-none">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </nav>
 
-    <!-- Center: Navigation Links -->
-    <ul class="hidden md:flex space-x-8 text-secondary font-medium">
-      <li><a href="{% url 'home' %}" class="hover:underline hover:text-primary transition">Home</a></li>
-      <li><a href="{% url 'products_list' %}" class="hover:underline hover:text-primary transition">Products</a></li>
-      <li><a href="{% url 'services' %}" class="hover:underline hover:text-primary transition">Services</a></li>
-      <li><a href="{% url 'about' %}" class="hover:underline hover:text-primary transition">About</a></li>
-      <li><a href="/blog" class="hover:underline hover:text-primary transition">Blog</a></li>
-      <li><a href="{% url 'contact' %}" class="hover:underline hover:text-primary transition">Contact</a></li>
-    </ul>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden bg-background text-secondary px-6 py-4 space-y-4 md:hidden">
+      <a href="{% url 'home' %}" class="block hover:text-primary">Home</a>
+      <a href="{% url 'products_list' %}" class="block hover:text-primary">Products</a>
+      <a href="{% url 'services' %}" class="block hover:text-primary">Services</a>
+      <a href="{% url 'about' %}" class="block hover:text-primary">About</a>
+      <a href="/blog" class="block hover:text-primary">Blog</a>
+      <a href="{% url 'contact' %}" class="block hover:text-primary">Contact</a>
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="block hover:text-primary">Logout</a>
+        {% if request.user.is_staff or request.user.is_superuser %}
+          <a href="{% url 'dashboard' %}" class="block bg-gradient-to-r from-primary to-accent text-background font-semibold px-4 py-2 rounded-md text-center">Dashboard</a>
+        {% endif %}
+      {% else %}
+        <a href="{% url 'login' %}" class="block hover:text-primary">Login</a>
+        <a href="{% url 'contact' %}" class="block bg-gradient-to-r from-primary to-accent text-background font-semibold px-4 py-2 rounded-md text-center">Request Demo</a>
+      {% endif %}
+    </div>
+  </header>
 
-    <!-- Right: Request Demo CTA (desktop only) -->
-  <div class="flex items-center space-x-4"> 
-    {% if request.user.is_authenticated %}
-    <a href="{% url 'logout' %}" class="hidden md:inline-block text-secondary hover:text-red-500 transition">Logout</a>
-    
-    {% if request.user.is_staff or request.user.is_superuser %}
-    <a href="{% url 'dashboard' %}" class="hidden md:inline-block bg-gradient-primary text-background font-semibold px-4 py-2 rounded-md hover:brightness-110 transition">
-     Dashboard
-    </a>
-    {% endif %}
-    {% else %}
-    <a href="{% url 'login' %}" class="hidden md:inline-block text-secondary hover:text-primary transition">Login</a>
+  <!-- Page Content -->
+  <main class="pt-24">
+    {% block content %}{% endblock %}
+  </main>
 
-    <a href="{% url 'contact' %}" class="hidden md:inline-block bg-gradient-primary text-background font-semibold px-4 py-2 rounded-md hover:brightness-110 transition">
-      Request a Demo
-    </a>
-    {% endif %}
-  </div>
-    <!-- Right: User Actions (Login/Register) -->
-    
-
-    <!-- Mobile Hamburger -->
-    <button id="mobile-menu-btn" aria-label="Toggle menu" class="md:hidden text-secondary focus:outline-none">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-        <line class="line1 transition-transform duration-300 ease-in-out" x1="3" y1="6" x2="21" y2="6"/>
-        <line class="line2 transition-opacity duration-300 ease-in-out" x1="3" y1="12" x2="21" y2="12"/>
-        <line class="line3 transition-transform duration-300 ease-in-out" x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-    </button>
-
-  </nav>
-
-  <!-- Mobile Menu (hidden by default) -->
-  <div id="mobile-menu" class="min-h-screen hidden bg-gradient-dark-theme text-secondary px-6 py-4 space-y-4 md:hidden">
-    <a href="/" class="block hover:text-primary transition">Home</a>
-    <a href="{% url 'products_list' %}" class="block hover:text-primary transition">Products</a>
-    <a href="{% url 'services' %}" class="block hover:text-primary transition">Services</a>
-    <a href="{% url 'about' %}" class="block hover:text-primary transition">About</a>
-    <a href="/blog" class="block hover:text-primary transition">Blog</a>
-    <a href="{% url 'contact' %}" class="block hover:text-primary transition">Contact</a>
-    {% if request.user.is_authenticated %}
-    <a href="{% url 'logout' %}" class="inline-block text-secondary hover:text-primary transition">Logout</a>
-    {% if request.user.is_staff or request.user.is_superuser %}
-    <a href="{% url 'dashboard' %}" class="block bg-gradient-primary text-background font-semibold px-4 py-2 rounded-md text-center btn-glow transition">
-     Dashboard
-    </a>
-    {% endif %}
-    {% else %}
-    <a href="{% url 'login' %}" class="inline-block text-secondary hover:text-primary transition">Login</a>
-
-    <a href="{% url 'contact' %}" class="block bg-gradient-primary text-background font-semibold px-4 py-2 rounded-md text-center btn-glow transition">
-      Request a Demo
-    </a>
-    {% endif %}
-  </div>
-
-</header>
-
-{% block content %} {% endblock %}
-  <!-- FOOTER -->
-   <style>
-    .footer-rounded {
-      border-top-left-radius: 25%;
-      border-top-right-radius: 25%;
-    }
-    /*text-gradient-to-br from-background via-gray-900*/
-   </style>
-  <footer class="bg-gradient-dark-theme py-12 mt-20 text-white-900 footer-rounded">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 ">
-      
+  <!-- Footer -->
+  <footer class="bg-gradient-to-br from-background via-gray-900 to-gray-800 py-12 mt-20 text-secondary">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
       <div>
-        <h3 class="text-xl font-bold mb-4">Ezydevs Technologies</h3>
-        <p class="max-w-sm text-white-900">
-          Building intelligent software solutions to empower African businesses and global partners.
-        </p>
+        <h3 class="text-xl font-bold mb-4 text-primary">Ezydevs Technologies</h3>
+        <p>Building intelligent software solutions to empower African businesses and global partners.</p>
       </div>
 
       <div>
         <h4 class="font-semibold mb-4">Quick Links</h4>
-        <ul class="space-y-2 text-white-900">
+        <ul class="space-y-2">
           <li><a href="/" class="hover:text-accent transition">Home</a></li>
           <li><a href="{% url 'products_list' %}" class="hover:text-accent transition">Products</a></li>
           <li><a href="{% url 'services' %}" class="hover:text-accent transition">Services</a></li>
@@ -173,49 +194,27 @@
 
       <div>
         <h4 class="font-semibold mb-4">Contact Us</h4>
-        <p class="text-white-900 mb-2">Email: <a href="mailto:info@ezydevstech.com" class="hover:text-accent transition">info@ezydevstech.com</a></p>
-        <p class="text-white-900 mb-4">Phone: <a href="tel:+2349050709538" class="hover:text-accent transition">+234 905 070 9538</a></p>
-        <div class="flex space-x-4">
-          <a href="https://github.com/ezy-devs" target="_blank" rel="noopener" aria-label="GitHub" class="hover:text-accent transition">
-            <!-- GitHub Icon SVG -->
-            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12a12 12 0 008.21 11.44c.6.11.82-.26.82-.58v-2.1c-3.34.73-4.04-1.61-4.04-1.61-.55-1.38-1.35-1.75-1.35-1.75-1.1-.75.08-.73.08-.73 1.21.08 1.85 1.23 1.85 1.23 1.08 1.85 2.84 1.31 3.54 1 .11-.79.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.97 0-1.32.47-2.4 1.23-3.25-.13-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.53 11.53 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.65 1.65.25 2.87.12 3.17.77.85 1.23 1.93 1.23 3.25 0 4.64-2.8 5.66-5.48 5.96.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <p>Email: <a href="mailto:info@ezydevstech.com" class="hover:text-accent">info@ezydevstech.com</a></p>
+        <p>Phone: <a href="tel:+2349050709538" class="hover:text-accent">+234 905 070 9538</a></p>
+        <div class="flex space-x-4 mt-4">
+          <a href="https://github.com/ezy-devs" target="_blank" rel="noopener" class="hover:text-accent transition">
+            <i class="fab fa-github text-2xl"></i>
           </a>
-          <!-- Add more social icons as needed -->
         </div>
       </div>
-
     </div>
 
-    <div class="text-white-900 text-center mt-12 text-sm">
+    <div class="text-center mt-12 text-sm text-secondary">
       &copy; 2025 Ezydevs Technologies. All rights reserved.
     </div>
   </footer>
 
   <script>
-    // Mobile menu toggle
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
-    btn.addEventListener('click', () => {
-      btn.classList.toggle('open');
-      menu.classList.toggle('hidden');
-    });
-
-    // Scroll-trigger animation for cards
-    const cards = document.querySelectorAll('.card-animate');
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    cards.forEach(card => observer.observe(card));
+    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
   </script>
-  <!-- Particles.js Script -->
 
+  {% block footer_scripts %}{% endblock %}
 </body>
 </html>

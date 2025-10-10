@@ -1,0 +1,60 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}Blog Dashboard{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto p-6">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-2xl font-semibold text-primary">Blog Posts</h2>
+    <a href="{% url 'dashboard_blog_create' %}" class="bg-gradient-to-r from-primary to-accent text-background px-4 py-2 rounded-md">+ New Post</a>
+  </div>
+
+  <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden">
+    <table class="min-w-full divide-y divide-gray-700">
+      <thead class="bg-white/3">
+        <tr>
+          <th class="px-4 py-3 text-left text-sm text-secondary">Title</th>
+          <th class="px-4 py-3 text-left text-sm text-secondary">Author</th>
+          <th class="px-4 py-3 text-left text-sm text-secondary">Status</th>
+          <th class="px-4 py-3 text-left text-sm text-secondary">Published</th>
+          <th class="px-4 py-3 text-right text-sm text-secondary">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for post in posts %}
+        <tr class="border-t border-white/5 hover:bg-white/3 transition">
+          <td class="px-4 py-3 text-sm"><a href="{% url 'dashboard_blog_edit' post.id %}" class="font-medium text-secondary">{{ post.title }}</a></td>
+          <td class="px-4 py-3 text-sm">{{ post.author }}</td>
+          <td class="px-4 py-3 text-sm">{{ post.status }}</td>
+          <td class="px-4 py-3 text-sm">{{ post.published_at|default:post.created_at|date:"M d, Y" }}</td>
+          <td class="px-4 py-3 text-sm text-right">
+            <a href="{% url 'blog_detail' post.slug %}" target="_blank" class="text-cyan-300 mr-3">View</a>
+            <a href="{% url 'dashboard_blog_edit' post.id %}" class="text-secondary mr-3">Edit</a>
+            <a href="{% url 'dashboard_blog_delete' post.id %}" class="text-red-400 js-delete-link">Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5" class="p-6 text-center text-secondary/70">No posts yet</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- pagination (optional) -->
+  {% if is_paginated %}
+  <div class="mt-4 flex justify-center">
+    {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}" class="px-3 py-1">Prev</a>{% endif %}
+    <span class="px-3 py-1">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}" class="px-3 py-1">Next</a>{% endif %}
+  </div>
+  {% endif %}
+</div>
+
+<script>
+  document.querySelectorAll('.js-delete-link').forEach(a => {
+    a.addEventListener('click', function (e) {
+      if (!confirm('Delete this post?')) e.preventDefault();
+    });
+  });
+</script>
+{% endblock %}

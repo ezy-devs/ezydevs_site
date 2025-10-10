@@ -3,20 +3,39 @@
 
 {% block content %}
 
-<section class="relative z-10 text-white py-20 px-6 md:px-16 lg:px-24">
-    <div class="text-center mb-12">
-        <h1 class="text-4xl md:text-5xl font-bold animate-fadeIn">Our Services</h1>
-        <p class="mt-4 text-lg text-gray-300 animate-fadeIn delay-200">Innovative solutions for businesses of all sizes.</p>
+<!-- 3D Background -->
+<div id="particles-js" class="absolute inset-0 -z-10"></div>
+
+<section class="relative z-10 text-white py-24 px-6 md:px-16 lg:px-24 bg-gradient-to-br from-background via-gray-900 to-gray-800 overflow-hidden">
+    <div class="text-center mb-16">
+        <h1 class="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 animate-fadeIn">
+            Our Services
+        </h1>
+        <p class="mt-6 text-lg text-gray-300 max-w-2xl mx-auto animate-fadeIn delay-200">
+            Empowering businesses with smart, scalable, and secure digital solutions.
+        </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
         {% for service in services %}
-        <div class="service-card bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-cyan-500/50 animate-slideUp">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full mb-6 icon-pulse">
-                <i class="{{ service.icon }} text-2xl">{{ service.icon }}</i>
+        <div class="relative group bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-8 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] 
+                    transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,255,255,0.3)] 
+                    border border-gray-700 backdrop-blur-xl animate-slideUp">
+            
+            <!-- Glow Border -->
+            <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-cyan-400/30 to-blue-500/30 opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500"></div>
+
+            <!-- Icon -->
+            <div class="relative flex items-center justify-center w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl shadow-lg 
+                        transform transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110">
+                <i class="{{ service.icon }} text-3xl"></i>
             </div>
-            <h3 class="text-xl font-semibold text-center mb-4">{{ service.name }}</h3>
-            <p class="text-gray-300 text-center">{{ service.description }}</p>
+
+            <!-- Title -->
+            <h3 class="text-2xl font-semibold text-center mb-4">{{ service.name }}</h3>
+
+            <!-- Description -->
+            <p class="text-gray-300 text-center leading-relaxed">{{ service.description }}</p>
         </div>
         {% endfor %}
     </div>
@@ -26,39 +45,42 @@
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
 particlesJS("particles-js", {
-    particles: {
-        number: { value: 60, density: { enable: true, value_area: 800 } },
-        color: { value: "#00f2ff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        line_linked: { enable: true, distance: 150, color: "#00f2ff", opacity: 0.4, width: 1 },
-        move: { enable: true, speed: 1 }
-    },
-    interactivity: {
-        detect_on: "canvas",
-        events: { onhover: { enable: true, mode: "repulse" } }
-    },
-    retina_detect: true
+  particles: {
+    number: { value: 60, density: { enable: true, value_area: 1000 } },
+    color: { value: ["#00f2ff", "#00b4d8", "#90e0ef"] },
+    shape: { type: "circle" },
+    opacity: { value: 0.4 },
+    size: { value: 3, random: true },
+    line_linked: { enable: true, distance: 150, color: "#00f2ff", opacity: 0.3, width: 1 },
+    move: { enable: true, speed: 1.2 }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: { onhover: { enable: true, mode: "repulse" } },
+    modes: { repulse: { distance: 120 } }
+  },
+  retina_detect: true
 });
 </script>
 
 <!-- Animations -->
 <style>
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-@keyframes pulseIcon {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+.animate-fadeIn { animation: fadeIn 1s ease forwards; }
+.animate-slideUp { animation: slideUp 0.9s ease forwards; }
+
+/* 3D Hover Effect */
+.service-card:hover {
+  transform: perspective(1000px) rotateX(6deg) rotateY(6deg) scale(1.05);
+  transition: all 0.5s ease;
 }
-.animate-fadeIn { animation: fadeIn 0.8s ease forwards; }
-.animate-slideUp { animation: slideUp 0.8s ease forwards; }
-.icon-pulse:hover { animation: pulseIcon 0.6s ease-in-out infinite; }
 </style>
+
 {% endblock %}

@@ -1,73 +1,90 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block extra_css %}
 <style>
-  /* Fade-up animation */
+  /* Smooth fade-up animation */
   @keyframes fadeUp {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-
   .fade-up {
     animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
   }
-  .fade-up-delay-1 {
-    animation-delay: 0.3s;
+
+  /* 3D tilt & depth shadow */
+  .tilt-card {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  .fade-up-delay-2 {
-    animation-delay: 0.6s;
+  .tilt-card:hover {
+    transform: rotateY(6deg) rotateX(4deg) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 255, 255, 0.15);
   }
-  .fade-up-delay-3 {
-    animation-delay: 0.9s;
+
+  /* Parallax gradient background */
+  .hero-gradient {
+    background: linear-gradient(135deg, rgba(14,165,233,0.1), rgba(59,130,246,0.15), rgba(236,72,153,0.1));
+    background-size: 400% 400%;
+    animation: gradientMove 8s ease infinite;
+  }
+  @keyframes gradientMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Depth text glow */
+  .glow-text {
+    text-shadow: 0 0 15px rgba(59,130,246,0.6), 0 0 25px rgba(59,130,246,0.3);
   }
 </style>
 {% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
-<section class="bg-gradient-to-r from-primary to-secondary text-background py-20 px-6 text-center rounded-b-lg shadow-lg fade-up">
-  <h1 class="text-5xl md:text-6xl font-extrabold max-w-4xl mx-auto leading-tight">
+<section class="hero-gradient text-center py-24 px-6 rounded-b-[2rem] shadow-2xl fade-up">
+  <h1 class="text-5xl md:text-6xl font-extrabold glow-text max-w-4xl mx-auto leading-tight text-white drop-shadow-md">
     {{ product.name }}
   </h1>
   {% if product.short_description %}
-    <p class="mt-4 text-xl max-w-3xl mx-auto opacity-90">
+    <p class="mt-6 text-xl text-gray-200 max-w-3xl mx-auto opacity-90">
       {{ product.short_description }}
     </p>
   {% endif %}
 </section>
 
-<!-- Product Details -->
-<main class="max-w-5xl mx-auto px-6 py-12 bg-background rounded-lg shadow-md -mt-12 relative z-10 space-y-10">
-  
-  <!-- Product Image -->
-  {% if product.image %}
-    <img 
-      src="{{ product.image.url }}" 
-      alt="{{ product.name }}" 
-      class="w-full max-h-[400px] object-contain rounded-md shadow-lg mx-auto fade-up fade-up-delay-1" 
-    />
-  {% else %}
-    <div class="w-full h-64 bg-gray-700 flex items-center justify-center rounded-md mx-auto fade-up fade-up-delay-1">
-      <span class="text-secondary">Image not available</span>
+<!-- Product Content -->
+<main class="max-w-5xl mx-auto px-6 py-16 relative z-10 -mt-16">
+  <div class="bg-[#0f172a]/70 backdrop-blur-xl rounded-3xl shadow-2xl p-10 tilt-card fade-up">
+    
+    <!-- Product Image -->
+    {% if product.image %}
+      <img 
+        src="{{ product.image.url }}" 
+        alt="{{ product.name }}" 
+        class="w-full max-h-[420px] object-contain rounded-2xl mb-8 mx-auto shadow-xl hover:scale-[1.02] transition-transform duration-300" 
+      />
+    {% else %}
+      <div class="w-full h-64 bg-gray-800 flex items-center justify-center rounded-2xl mb-8">
+        <span class="text-gray-400">Image not available</span>
+      </div>
+    {% endif %}
+
+    <!-- Product Details -->
+    <section class="prose prose-invert max-w-none text-gray-300 leading-relaxed fade-up" style="animation-delay: 0.3s;">
+      {{ product.detailed_description|linebreaks }}
+    </section>
+
+    <!-- Action Button -->
+    <div class="text-center mt-12 fade-up" style="animation-delay: 0.6s;">
+      <a href="{% url 'products_list' %}" 
+         class="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold px-10 py-3 rounded-xl shadow-lg hover:shadow-cyan-400/30 transform hover:-translate-y-1 transition-all duration-300">
+        ← Back to Products
+      </a>
     </div>
-  {% endif %}
 
-  <!-- Detailed Description -->
-  <section class="prose prose-invert max-w-none text-secondary mx-auto fade-up fade-up-delay-2">
-    {{ product.detailed_description|linebreaks }}
-  </section>
-
-  <!-- Back to Products Button -->
-  <div class="text-center fade-up fade-up-delay-3">
-    <a href="{% url 'products_list' %}" class="inline-block bg-gradient-primary text-background font-semibold px-8 py-3 rounded-md hover:brightness-110 transition">
-      ← Back to Products
-    </a>
   </div>
 </main>
 {% endblock %}

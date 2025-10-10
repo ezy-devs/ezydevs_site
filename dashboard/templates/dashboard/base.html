@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ sidebarOpen: false }" class="h-full" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" x-data="{ sidebarOpen: false }" class="h-full">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,71 +7,82 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body {
+      font-family: 'Inter', sans-serif;
+    }
   </style>
 </head>
-<body class="h-full bg-gray-100 text-gray-800">
-<style>
-  .dash-content {
-    margin-left:250px;
-}
-  @media (max-width: 768px) {
-    .dash-content {
-      margin-left:0;
-    }
-  }
- 
-  /* Tailwind's blue-900 */
-  .bg-brand {
-    background-color: #1E3A8A;
-  }
+<body class="h-full text-gray-100 bg-gradient-to-br from-background via-gray-900 to-black">
 
-</style>
+  <!-- Overlay for mobile -->
+  <div 
+    x-show="sidebarOpen" 
+    @click="sidebarOpen = false" 
+    class="fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden"
+    x-transition.opacity
+  ></div>
+
   <!-- Sidebar -->
-  {% block sidebar %}
-  <div class="sidebarOpen ? 'block' : 'hidden'" class="fixed inset-0 z-40 md:hidden" @click="sidebarOpen = false"></div>
-
-  <aside class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed z-50 inset-y-0 left-0 w-64 bg-blue-900 text-white transform md:translate-x-0 transition-transform duration-200 ease-in-out">
-    <div class="p-4 text-2xl font-bold">Ezydevs</div>
+  <aside 
+    :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" 
+    class="fixed inset-y-0 left-0 w-64 bg-gray-900/90 backdrop-blur-md text-white transform md:translate-x-0 transition-transform duration-300 ease-in-out z-50 border-r border-gray-800"
+  >
+    <div class="p-4 text-2xl font-bold border-b border-gray-800">
+      Ezydevs
+    </div>
     <nav class="mt-6 space-y-2 px-4">
-      <a href="{% url 'dashboard' %}" class="block py-2 px-3 rounded hover:bg-blue-700">Dashboard</a>
-      <a href="{% url 'products_dashboard'%}" class="block py-2 px-3 rounded hover:bg-blue-700">Products</a>
-      <a href="" class="block py-2 px-3 rounded hover:bg-blue-700">Clients</a>
-      <a href="{% url 'team_dashboard'%}" class="block py-2 px-3 rounded hover:bg-blue-700">Teams</a>
-      <a href="{% url 'services_dashboard' %}" class="block py-2 px-3 rounded hover:bg-blue-700">Services</a>
-      <a href="{% url 'testimonials_dashboard' %}" class="block py-2 px-3 rounded hover:bg-blue-700">Testimonials</a>
-      <a href="{% url 'dashboard' %}" class="block py-2 px-3 rounded hover:bg-blue-700">Settings</a>
+      <a href="{% url 'dashboard' %}" class="block py-2 px-3 rounded hover:bg-gray-800 transition">Dashboard</a>
+      <a href="{% url 'products_dashboard'%}" class="block py-2 px-3 rounded hover:bg-gray-800 transition">Products</a>
+      <a href="#" class="block py-2 px-3 rounded hover:bg-gray-800 transition">Clients</a>
+      <a href="{% url 'team_dashboard'%}" class="block py-2 px-3 rounded hover:bg-gray-800 transition">Teams</a>
+      <a href="{% url 'services_dashboard' %}" class="block py-2 px-3 rounded hover:bg-gray-800 transition">Services</a>
+      <a href="{% url 'testimonials_dashboard' %}" class="block py-2 px-3 rounded hover:bg-gray-800 transition">Testimonials</a>
+      <a href="{% url 'dashboard_blog_list' %}" class="block py-2 px-3 rounded hover:bg-gray-800 transition">Blog</a>
+      <a href="{% url 'contacts_dashboard' %}" class="block py-2 px-3 rounded hover:bg-gray-800 transition">Contacts</a>
+      <a href="{% url 'dashboard' %}" class="block py-2 px-3 rounded hover:bg-gray-800 transition">Settings</a>
     </nav>
   </aside>
-{% endblock %}
-  <!-- Main content -->
-  <div class="flex flex-col md:pl-64 h-screen">
+
+  <!-- Main content wrapper -->
+  <div class="flex flex-col md:pl-64 min-h-screen transition-all duration-300 ease-in-out">
+    
     <!-- Top navbar -->
-    <header class="flex items-center justify-between bg-white shadow px-4 py-3 sticky top-0 z-40">
+    <header class="flex items-center justify-between bg-gray-900/60 backdrop-blur-md shadow px-4 py-3 sticky top-0 z-30 border-b border-gray-800">
       <div class="flex items-center space-x-3">
-        <button @click="sidebarOpen = !sidebarOpen" class="md:hidden focus:outline-none text-blue-900">
+        <!-- Mobile menu button -->
+        <button 
+          @click="sidebarOpen = !sidebarOpen" 
+          class="md:hidden focus:outline-none text-gray-200"
+        >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <h1 class="text-xl font-semibold text-blue-900">Dashboard</h1>
+        <h1 class="text-xl font-semibold text-white">Dashboard</h1>
       </div>
+
+      <!-- Right profile section -->
       <div class="flex items-center space-x-4">
-        <span class="text-sm text-gray-600 hidden sm:inline">Welcome, Admin</span>
-        <img src="https://i.pravatar.cc/40?img=1" alt="Avatar" class="rounded-full w-8 h-8" />
+        <span class="text-sm text-gray-300 hidden sm:inline">Welcome, Admin</span>
+        <img src="https://i.pravatar.cc/40?img=1" alt="Avatar" class="rounded-full w-8 h-8 border border-gray-600" />
       </div>
     </header>
-  <main class="p-6 flex-1 overflow-y-auto">
-  {% block content %}
 
-    {% endblock %}
-  </main>
+    <!-- Main content -->
+    <main class="p-6 flex-1 overflow-y-auto">
+      <div class="bg-gray-900/70 backdrop-blur-md rounded-2xl shadow-lg p-6 border border-gray-800">
+        {% block content %}
+        <!-- Your dashboard content here -->
+        {% endblock %}
+      </div>
+    </main>
 
+    <!-- Footer -->
+    <footer class="bg-gray-900/60 backdrop-blur-md border-t border-gray-800 mt-auto p-4 text-center">
+      <p class="text-sm text-gray-400">© 2025 Ezydevs. All rights reserved.</p>
+    </footer>
+  </div>
 
-  <!-- Footer -->
-  <footer class="bg-white shadow mt-6 p-4 text-center">
-    <p class="text-sm text-gray-600">© 2025 Ezydevs. All rights reserved.</p>
-  </footer>
 </body>
 </html>
