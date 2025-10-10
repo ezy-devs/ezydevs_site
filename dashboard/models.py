@@ -8,6 +8,7 @@ class Testimonies(models.Model):
     name = models.CharField(max_length=100)
     designation = models.CharField(max_length=100)
     content = models.TextField()
+    company = models.CharField(max_length=200, blank=True, null=True)
     image = models.ImageField(upload_to='testimonials/')
     created_at = models.DateTimeField(auto_now_add=True)
 

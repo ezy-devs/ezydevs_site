@@ -1,0 +1,49 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Edit Partner{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex justify-center items-center bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] p-6">
+
+  <div class="w-full max-w-3xl bg-[#1e293b]/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-700/50 p-8 text-gray-100 animate-fadeIn">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-3xl font-bold text-blue-400 tracking-tight">{{ title }}</h2>
+      <a href="{% url 'partners_dashboard' %}" 
+         class="text-sm text-blue-300 hover:text-blue-400 font-medium underline underline-offset-4 transition">
+        ← Back to Dashboard
+      </a>
+    </div>
+
+    <!-- Form -->
+    <form method="POST" enctype="multipart/form-data" class="space-y-6">
+      {% csrf_token %}
+      <div class="space-y-5">
+        {{ form.as_p }}
+      </div>
+
+      <div class="flex justify-end items-center space-x-4 pt-4">
+        <a href="{% url 'partners_dashboard' %}" 
+           class="text-gray-400 hover:text-gray-200 transition font-medium">
+          Cancel
+        </a>
+        <button type="submit" 
+                class="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold px-8 py-2.5 rounded-full shadow-lg hover:shadow-blue-700/50 hover:scale-105 transform transition-all duration-300">
+          💾 Update Partner
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Fade Animation -->
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+</style>
+{% endblock %}

@@ -39,7 +39,7 @@ class DashboardView(LoginRequiredMixin, SuperUserPassesTestMixin, TemplateView):
 
 @login_required
 @staff_required
-def testimonials_dashboard(request):
+def testimony_dashboard(request):
     
     testimonies = Testimonies.objects.all()
     return render(request, 'dashboard/testimonials.html', {'testimonies': testimonies})
@@ -48,31 +48,31 @@ def testimonials_dashboard(request):
 @login_required
 @staff_required
 def add_testimony(request):
-    
+    title = "Add Testimony"
     if request.method == 'POST':
         form = TestimoniesForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('testimonials_dashboard')
+            return redirect('testimony_dashboard')
     else:
         form = TestimoniesForm()
 
-    return render(request, 'dashboard/add_testimony.html', {'form': form})
+    return render(request, 'dashboard/testimony_form.html', {'form': form, 'title': title})
 
 @login_required
 @staff_required
 def edit_testimony(request, id):
-    
+    title = "Edit Testimony"
     testimony = get_object_or_404(Testimonies, id=id)
     if request.method == 'POST':
         form = TestimoniesForm(request.POST, request.FILES, instance=testimony)
         if form.is_valid():
             form.save()
             messages.success(request, 'Testimony updated successfully!')
-            return redirect('testimonials_dashboard')
+            return redirect('testimony_dashboard')
     else:
         form = TestimoniesForm(instance=testimony)
-    return render(request, 'dashboard/edit_testimony.html', {'form': form, 'testimony':testimony})
+    return render(request, 'dashboard/testimony_form.html', {'form': form, 'testimony': testimony, 'title': title})
     
 
 @login_required
@@ -82,7 +82,7 @@ def delete_testimony(request, id):
     testimony = get_object_or_404(Testimonies, id=id)
     testimony.delete()
     messages.success(request, 'Testimony deleted successfully!')
-    return redirect('testimonials_dashboard')
+    return redirect('testimony_dashboard')
 
 @login_required
 @staff_required
@@ -185,6 +185,58 @@ def delete_team(request, id):
     team.delete()
     messages.success(request, 'Team deleted successfully!')
     return redirect('team_dashboard')
+
+
+
+# Partners views
+
+
+
+@login_required
+@staff_required
+def partners_dashboard(request):
+
+    partners = Partner.objects.all()
+    return render(request, 'dashboard/partners.html', {'partners': partners})
+
+@login_required
+@staff_required
+def add_partner(request):
+    title = "Add Partner"
+    if request.method == 'POST':
+        form = PartnerForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Partner added successfully!')
+            return redirect('partners_dashboard')
+    else:
+        form = PartnerForm()
+    return render(request, 'dashboard/partner_form.html', {'form': form, 'title': title})
+
+@login_required
+@staff_required
+def edit_partner(request, id):
+    title = "Edit Partner"
+    partner = get_object_or_404(Partner, id=id)
+    if request.method == 'POST':
+        form = PartnerForm(request.POST, request.FILES, instance=partner)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Partner updated successfully!')
+            return redirect('partners_dashboard')
+    else:
+        form = PartnerForm(instance=partner)
+    return render(request, 'dashboard/partner_form.html', {'form': form, 'partner': partner, 'title': title})
+
+@login_required
+@staff_required
+def delete_partner(request, id):
+
+    partner = get_object_or_404(Partner, id=id)
+    partner.delete()
+    messages.success(request, 'Partner deleted successfully!')
+    return redirect('partners_dashboard')
+
 
 @login_required
 @staff_required

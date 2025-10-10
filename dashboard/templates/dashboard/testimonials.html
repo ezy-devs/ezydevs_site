@@ -1,55 +1,62 @@
 {% extends 'dashboard/base.html' %}
-
 {% load static %}
 {% block title %}Testimonials Dashboard{% endblock %}
 
 {% block content %}
 
-<!-- Main Content -->
-<div class="mt-1 space-y-4 flex-1">
-    <header class="bg-brand text-white shadow-md rounded-xl">
-        <div class="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
-            <h1 class="text-3xl font-bold">Testimonials Dashboard</h1>
-            <a href="{% url 'add_testimony' %}"
-                class="bg-white text-blue-900 font-semibold px-5 py-2 rounded-full shadow hover:bg-gray-100 transition">
-                + Add Testimony
-            </a>
-        </div>
+<div class="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] py-10 px-4 text-gray-100">
+  <div class="max-w-7xl mx-auto space-y-8">
+
+    <!-- Header -->
+    <header
+      class="bg-[#1e293b]/90 text-white shadow-2xl rounded-2xl px-6 py-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border border-gray-700/50 backdrop-blur-md">
+      <h1 class="text-3xl font-extrabold tracking-tight">Testimonials Dashboard</h1>
+      <a href="{% url 'add_testimony' %}"
+        class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-blue-800/30 hover:bg-blue-500 transition-all duration-300 transform hover:-translate-y-0.5">
+        + Add Testimony
+      </a>
     </header>
 
-    <!-- Testimonials Table -->
-    <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
-        <table class="min-w-full table-auto">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Name</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Designation</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Testimony</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Actions</th>
-                </tr>
-            </thead>
-            <tbody class="text-sm font-medium text-gray-700">
-                {% for testimony in testimonies %}
-                <tr class="border-t">
-                    <td class="px-6 py-4">{{ testimony.name }}</td>
-                    <td class="px-6 py-4">{{ testimony.designation }}</td>
-                    <td class="px-6 py-4">{{ testimony.content|truncatewords:20 }}</td>
-                    <td class="px-6 py-4 flex space-x-4">
-                        <!-- Edit Button -->
-                        <a href="{% url 'edit_testimony' testimony.id %}"
-                            class="text-blue-500 hover:text-blue-700">Edit</a>
-                        <!-- Delete Button -->
-                        <a href="{% url 'delete_testimony' testimony.id %}"
-                            class="text-red-500 hover:text-red-700">Delete</a>
-                    </td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="4" class="px-6 py-4 text-center text-gray-500">No testimonies available</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <!-- Table Card -->
+    <div class="overflow-x-auto bg-[#1e293b]/80 backdrop-blur-xl shadow-xl rounded-2xl border border-gray-700/50">
+      <table class="min-w-full text-left">
+        <thead class="bg-[#334155] border-b border-gray-700">
+          <tr>
+            <th class="px-6 py-4 text-sm font-semibold text-gray-200 uppercase">Name</th>
+            <th class="px-6 py-4 text-sm font-semibold text-gray-200 uppercase">Designation</th>
+            <th class="px-6 py-4 text-sm font-semibold text-gray-200 uppercase">Testimony</th>
+            <th class="px-6 py-4 text-sm font-semibold text-gray-200 uppercase">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody class="divide-y divide-gray-700">
+          {% for testimony in testimonies %}
+          <tr class="hover:bg-blue-900/20 transition duration-300">
+            <td class="px-6 py-4">{{ testimony.name }}</td>
+            <td class="px-6 py-4 text-gray-300">{{ testimony.designation }}</td>
+            <td class="px-6 py-4 text-gray-400">{{ testimony.content|truncatewords:20 }}</td>
+            <td class="px-6 py-4 flex items-center space-x-4">
+              <a href="{% url 'edit_testimony' testimony.id %}"
+                class="text-blue-400 hover:text-blue-300 font-medium transition duration-200">
+                ✏️ Edit
+              </a>
+              <a href="{% url 'delete_testimony' testimony.id %}"
+                class="text-red-400 hover:text-red-300 font-medium transition duration-200">
+                🗑️ Delete
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4" class="px-6 py-6 text-center text-gray-500 italic">
+              No testimonies available yet.
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
+
 {% endblock %}

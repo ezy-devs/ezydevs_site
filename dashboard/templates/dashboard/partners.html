@@ -1,0 +1,63 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}Partners Dashboard{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-gray-100 p-6">
+
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-8 bg-[#1e293b]/80 backdrop-blur-lg rounded-xl shadow-lg border border-gray-700/50 px-6 py-5">
+    <h1 class="text-2xl md:text-3xl font-bold text-blue-400">🤝 Partners Dashboard</h1>
+    <a href="{% url 'add_partner' %}" 
+       class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-lg hover:shadow-blue-800/40 transition-all duration-300">
+      + Add Partner
+    </a>
+  </div>
+
+  <!-- Partners Table -->
+  <div class="overflow-x-auto bg-[#1e293b]/90 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-700/50">
+    <table class="min-w-full text-left">
+      <thead class="bg-[#334155]/60 text-gray-300">
+        <tr>
+          <th class="px-6 py-3 text-sm font-semibold">Logo</th>
+          <th class="px-6 py-3 text-sm font-semibold">Company Name</th>
+          <th class="px-6 py-3 text-sm font-semibold">Website</th>
+          <th class="px-6 py-3 text-sm font-semibold">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for partner in partners %}
+        <tr class="border-t border-gray-700/50 hover:bg-[#334155]/30 transition duration-200">
+          <td class="px-6 py-4">
+            {% if partner.logo %}
+            <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="h-10 w-10 rounded-full object-cover shadow-md">
+            {% else %}
+            <span class="text-gray-400 text-sm italic">No logo</span>
+            {% endif %}
+          </td>
+          <td class="px-6 py-4 font-medium">{{ partner.name }}</td>
+          <td class="px-6 py-4">
+            {% if partner.website %}
+            <a href="{{ partner.website }}" target="_blank" class="text-blue-400 hover:text-blue-300 underline underline-offset-2">
+              {{ partner.website }}
+            </a>
+            {% else %}
+            <span class="text-gray-400 text-sm italic">N/A</span>
+            {% endif %}
+          </td>
+          <td class="px-6 py-4 flex space-x-4">
+            <a href="{% url 'edit_partner' partner.id %}" class="text-blue-400 hover:text-blue-300 transition">Edit</a>
+            <a href="{% url 'delete_partner' partner.id %}" class="text-red-400 hover:text-red-300 transition">Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4" class="text-center text-gray-400 py-6">No partners found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{% endblock %}

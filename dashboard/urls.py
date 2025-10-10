@@ -3,10 +3,10 @@ from . import views
 
 urlpatterns = [
     path('', views.dashboard, name='dashboard'),
-    path('testimonials', views.testimonials_dashboard, name='testimonials_dashboard'),
-    path('testimonials/add', views.add_testimony, name='add_testimony'),
-    path('testimonials/edit/<int:id>', views.edit_testimony, name='edit_testimony'),
-    path('testimonials/delete/<int:id>', views.delete_testimony, name='delete_testimony'),
+    path('testimonies', views.testimony_dashboard, name='testimony_dashboard'),
+    path('testimony/add', views.add_testimony, name='add_testimony'),
+    path('testimony/edit/<uuid:id>', views.edit_testimony, name='edit_testimony'),
+    path('testimony/delete/<uuid:id>', views.delete_testimony, name='delete_testimony'),
     path('services', views.services_dashboard, name='services_dashboard'),
     path('services/add', views.add_service, name='add_service'),
     path('services/edit/<int:id>', views.edit_service, name='edit_service'),
@@ -26,6 +26,12 @@ urlpatterns = [
     path('blog/delete/<int:post_id>', views.dashboard_blog_delete, name='dashboard_blog_delete'),
     path('contacts', views.contacts_dashboard, name='contacts_dashboard'),  
     path('contacts/<int:pk>', views.dashboard_contact_detail, name='dashboard_contact_detail'),
+
+    # Partners
+    path('partners', views.partners_dashboard, name='partners_dashboard'),
+    path('partner/add', views.add_partner, name='add_partner'),
+    path('partner/edit/<uuid:id>', views.edit_partner, name='edit_partner'),
+    path('partner/delete/<uuid:id>', views.delete_partner, name='delete_partner'),
 
     #path('categories/', views.categories_dashboard, name='categories_dashboard'),
     #path('categories/add/', views.add_category, name='add_category'),
