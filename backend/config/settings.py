@@ -66,8 +66,8 @@ AUTH_USER_MODEL = 'accounts.User'
 
 ROOT_URLCONF = 'config.urls'
 
-STATIC_URL = 'static/'
-
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR.parent, 'staticfiles')
 STATICFILES_DIRS = [
     BASE_DIR.parent / 'static',
 ]
