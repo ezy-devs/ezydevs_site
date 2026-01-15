@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniNile | Africa's Digital Infrastructure</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#0B0C10',       // Main Background
+                        slate: '#1F2833',      // Secondary Background / Cards
+                        steel: '#C5C6C7',      // Primary Text
+                        emerald: '#45A29E',    // Accents / Active States
+                        highlight: '#66FCF1',  // High Value Highlights
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1F2833 1px, transparent 1px), linear-gradient(to bottom, #1F2833 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Utilities */
+        .glass-nav {
+            background: rgba(11, 12, 16, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(197, 198, 199, 0.1);
+        }
+        .hero-glow {
+            background: radial-gradient(circle at 50% 50%, rgba(69, 162, 158, 0.08) 0%, rgba(11, 12, 16, 0) 70%);
+        }
+    </style>
+</head>
+<body class="bg-void text-steel font-sans antialiased selection:bg-emerald selection:text-void">
+
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <div class="w-8 h-8 bg-emerald/10 border border-emerald/30 flex items-center justify-center">
+                        <div class="w-3 h-3 bg-emerald rounded-sm"></div>
+                    </div>
+                    <span class="font-mono text-xl tracking-tight font-bold text-white">OMNINILE</span>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#infrastructure" class="hover:text-emerald transition-colors text-sm font-medium">Infrastructure</a>
+                        <a href="#platforms" class="hover:text-emerald transition-colors text-sm font-medium">Platforms</a>
+                        <a href="#governance" class="hover:text-emerald transition-colors text-sm font-medium">Governance</a>
+                        <a href="#about" class="hover:text-emerald transition-colors text-sm font-medium">About</a>
+                    </div>
+                </div>
+
+                <div class="hidden md:block">
+                    <a href="#contact" class="font-mono text-xs border border-emerald/50 px-5 py-2 hover:bg-emerald/10 transition-all text-emerald uppercase tracking-wider">
+                        Enterprise Access
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative pt-32 pb-16 sm:pt-40 sm:pb-24 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern [background-size:40px_40px] opacity-[0.05]"></div>
+        <div class="absolute inset-0 hero-glow"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-8 flex flex-col items-start">
+            <div class="inline-flex items-center space-x-2 border-l-2 border-emerald pl-4 mb-8">
+                <span class="text-emerald font-mono text-xs uppercase tracking-widest">System Status: Operational</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl font-light text-white tracking-tight mb-6 max-w-4xl">
+                Building Africa’s <br />
+                <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald to-white">Digital Infrastructure.</span>
+            </h1>
+            
+            <p class="mt-4 text-lg text-steel/80 max-w-2xl font-light leading-relaxed">
+                Secure identity, business, and intelligence systems designed for continental scale. 
+                We engineer the sovereign rails that power the next generation of African economies.
+            </p>
+            
+            <div class="mt-10 flex gap-6">
+                <a href="#contact" class="bg-emerald text-void px-8 py-3 font-semibold hover:bg-highlight transition-colors">
+                    Initiate Partnership
+                </a>
+                <a href="#infrastructure" class="px-8 py-3 border border-steel/30 text-steel hover:border-emerald hover:text-emerald transition-colors">
+                    View Architecture
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <section id="infrastructure" class="py-24 bg-slate/30 border-y border-steel/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="mb-16">
+                <h2 class="text-3xl font-light text-white mb-4">Core Infrastructure</h2>
+                <p class="font-mono text-emerald/80 text-sm">PROTOCOL LEVEL ECOSYSTEM</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group p-8 border border-steel/10 bg-void hover:border-emerald/40 transition-all duration-500">
+                    <div class="w-12 h-12 bg-slate mb-6 flex items-center justify-center border border-steel/10 group-hover:border-emerald/50">
+                        <svg class="w-6 h-6 text-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.131A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.2-2.858.59-4.18M5.55 17.55l-1-1a30 30 0 006.05-6.05l1 1c1.66 1.66 2.05 4.25.95 6.15-1.1 1.9-3.7 2.3-5.35.65z"></path></svg>
+                    </div>
+                    <h3 class="text-xl text-white font-medium mb-3">Identity Infrastructure</h3>
+                    <p class="text-sm text-steel/70 leading-relaxed mb-6">
+                        Verifiable, portable, and secure digital identity. A unified layer for KYC, document verification, and biometric authentication.
+                    </p>
+                    <ul class="space-y-2 font-mono text-xs text-emerald/80">
+                        <li class="flex items-center"><span class="w-1 h-1 bg-emerald mr-2"></span>Biometric Integration</li>
+                        <li class="flex items-center"><span class="w-1 h-1 bg-emerald mr-2"></span>RBAC Systems</li>
+                        <li class="flex items-center"><span class="w-1 h-1 bg-emerald mr-2"></span>Sovereign Data</li>
+                    </ul>
+                </div>
+
+                <div class="group p-8 border border-steel/10 bg-void hover:border-emerald/40 transition-all duration-500">
+                    <div class="w-12 h-12 bg-slate mb-6 flex items-center justify-center border border-steel/10 group-hover:border-emerald/50">
+                        <svg class="w-6 h-6 text-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <h3 class="text-xl text-white font-medium mb-3">Business Infrastructure</h3>
+                    <p class="text-sm text-steel/70 leading-relaxed mb-6">
+                        Rails for commerce and compliance. Structuring unstructured data to facilitate secure value exchange between entities.
+                    </p>
+                    <ul class="space-y-2 font-mono text-xs text-emerald/80">
+                        <li class="flex items-center"><span class="w-1 h-1 bg-emerald mr-2"></span>Payment Orchestration</li>
+                        <li class="flex items-center"><span class="w-1 h-1 bg-emerald mr-2"></span>Automated Compliance</li>
+                        <li class="flex items-center"><span class="w-1 h-1 bg-emerald mr-2"></span>Registry Management</li>
+                    </ul>
+                </div>
+
+                <div class="group p-8 border border-steel/10 bg-void hover:border-emerald/40 transition-all duration-500">
+                    <div class="w-12 h-12 bg-slate mb-6 flex items-center justify-center border border-steel/10 group-hover:border-emerald/50">
+                        <svg class="w-6 h-6 text-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                    </div>
+                    <h3 class="text-xl text-white font-medium mb-3">Intelligence Infrastructure</h3>
+                    <p class="text-sm text-steel/70 leading-relaxed mb-6">
+                        Turning raw data into national assets. Privacy-preserving analytics for high-level governance and planning.
+                    </p>
+                    <ul class="space-y-2 font-mono text-xs text-emerald/80">
+                        <li class="flex items-center"><span class="w-1 h-1 bg-emerald mr-2"></span>Predictive Modeling</li>
+                        <li class="flex items-center"><span class="w-1 h-1 bg-emerald mr-2"></span>Population Analytics</li>
+                        <li class="flex items-center"><span class="w-1 h-1 bg-emerald mr-2"></span>Resource Tracking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-20 border-b border-steel/5 bg-void">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+            <div class="md:w-1/2">
+                <h2 class="text-2xl font-light text-white mb-4">Certified for Sovereignty</h2>
+                <p class="text-steel/70 leading-relaxed mb-6">
+                    We maintain the highest standards of data residency and cryptographic security. 
+                    OmniNile infrastructure is audited for compliance with global and African regulatory frameworks.
+                </p>
+                <a href="#" class="text-emerald text-sm font-mono hover:underline">Download Security Whitepaper &rarr;</a>
+            </div>
+            
+            <div class="md:w-1/2 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div class="border border-steel/10 p-4 flex flex-col items-center justify-center text-center hover:border-emerald/30 transition-colors">
+                    <span class="font-mono text-xl text-white font-bold block mb-1">ISO</span>
+                    <span class="text-[10px] text-steel/50 uppercase tracking-wider">27001 Certified</span>
+                </div>
+                <div class="border border-steel/10 p-4 flex flex-col items-center justify-center text-center hover:border-emerald/30 transition-colors">
+                    <span class="font-mono text-xl text-white font-bold block mb-1">NDPR</span>
+                    <span class="text-[10px] text-steel/50 uppercase tracking-wider">Compliant</span>
+                </div>
+                <div class="border border-steel/10 p-4 flex flex-col items-center justify-center text-center hover:border-emerald/30 transition-colors">
+                    <span class="font-mono text-xl text-white font-bold block mb-1">PCI</span>
+                    <span class="text-[10px] text-steel/50 uppercase tracking-wider">DSS Level 1</span>
+                </div>
+                <div class="border border-steel/10 p-4 flex flex-col items-center justify-center text-center hover:border-emerald/30 transition-colors">
+                    <span class="font-mono text-xl text-white font-bold block mb-1">GDPR</span>
+                    <span class="text-[10px] text-steel/50 uppercase tracking-wider">Ready</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="platforms" class="py-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="bg-slate border border-steel/10 p-8 lg:p-16 flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <span class="text-emerald font-mono text-xs uppercase tracking-widest mb-2 block">Identity Layer</span>
+                    <h3 class="text-3xl text-white font-semibold mb-6">LumiID</h3>
+                    <p class="text-steel/80 mb-8 leading-relaxed">
+                        LumiID is the standard for digital trust. It bridges the gap between physical existence and digital recognition, ensuring that every interaction is authenticated, authorized, and audited.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="px-4 py-2 bg-void border border-emerald/20 text-xs font-mono text-emerald rounded">Universal KYC</span>
+                        <span class="px-4 py-2 bg-void border border-emerald/20 text-xs font-mono text-emerald rounded">Fraud Detection</span>
+                        <span class="px-4 py-2 bg-void border border-emerald/20 text-xs font-mono text-emerald rounded">API-First</span>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 w-full bg-void border border-steel/10 p-6 font-mono text-xs text-steel/60 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-2 text-emerald/40 text-[10px]">LumiID API v1.2</div>
+                    <p><span class="text-emerald">POST</span> /v1/identity/verify</p>
+                    <p class="pl-4 text-emerald/60">{</p>
+                    <p class="pl-8">"document_type": <span class="text-white">"NIN"</span>,</p>
+                    <p class="pl-8">"biometric_hash": <span class="text-white">"sha256:8f43..."</span>,</p>
+                    <p class="pl-8">"jurisdiction": <span class="text-white">"NG"</span></p>
+                    <p class="pl-4 text-emerald/60">}</p>
+                    <br>
+                    <p><span class="text-highlight">200 OK</span> <span class="text-emerald/50">-- 45ms</span></p>
+                    <p class="pl-4 text-emerald/60">{</p>
+                    <p class="pl-8">"status": <span class="text-white">"verified"</span>,</p>
+                    <p class="pl-8">"confidence_score": <span class="text-highlight">0.99</span></p>
+                    <p class="pl-4 text-emerald/60">}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="py-24 bg-slate/20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="mb-12">
+            <h2 class="text-3xl font-light text-white mb-4">Built for Builders</h2>
+            <p class="text-steel/70 max-w-2xl">
+                Infrastructure that gets out of your way. Integrate our Identity and Logic layers with <span class="text-white">3 lines of code</span> using our native SDKs.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="rounded-lg bg-[#050505] border border-steel/10 p-6 font-mono text-sm shadow-2xl">
+                <div class="flex gap-2 mb-4">
+                    <div class="w-3 h-3 rounded-full bg-red-500/20"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/20"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500/20"></div>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-steel/50"># Install the OmniNile Python SDK</p>
+                    <p class="text-white"><span class="text-emerald">pip</span> install omninile-core</p>
+                    <br>
+                    <p class="text-steel/50"># Initialize Client</p>
+                    <p class="text-white">client = <span class="text-yellow-400">OmniClient</span>(api_key=<span class="text-green-400">"omni_live_..."</span>)</p>
+                    <p class="text-white">identity = client.identity.verify(nid=<span class="text-green-400">"123456789"</span>)</p>
+                    <br>
+                    <p class="text-emerald">>>> Identity Verified (Latency: 42ms)</p>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-white font-semibold mb-2">Native SDK Support</h3>
+                    <div class="flex gap-4 text-steel/60 text-sm font-mono">
+                        <span class="border-b border-emerald text-white pb-1">Python</span>
+                        <span class="hover:text-white transition-colors cursor-pointer">Go</span>
+                        <span class="hover:text-white transition-colors cursor-pointer">Node.js</span>
+                        <span class="hover:text-white transition-colors cursor-pointer">Java</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-2">Developer Resources</h3>
+                    <ul class="space-y-3 text-sm text-steel/70">
+                        <li class="flex items-center hover:text-emerald cursor-pointer transition-colors">
+                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            API Documentation
+                        </li>
+                        <li class="flex items-center hover:text-emerald cursor-pointer transition-colors">
+                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                            Sandbox Environment
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="governance" class="py-24 bg-void relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div id="about">
+                    <h3 class="text-2xl text-white font-light mb-6">From Code to Architecture</h3>
+                    <div class="prose prose-invert prose-sm text-steel/80">
+                        <p class="mb-4">
+                            OmniNile evolved from the engineering labs of <strong>EzyDevs</strong>. What began as a pursuit of software excellence revealed a deeper need: Africa didn't just need more apps; it needed better rails.
+                        </p>
+                        <p>
+                            We transition from building client solutions to engineering the fundamental infrastructure required for the continent's digital maturation.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl text-white font-light mb-6">The Security Standard</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full border border-emerald/50 text-emerald mt-0.5">1</div>
+                            <div class="ml-4">
+                                <h4 class="text-white text-sm font-semibold">Data Sovereignty</h4>
+                                <p class="text-xs text-steel/60 mt-1">We operate on a principle of stewardship. We build the vaults; you hold the keys.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full border border-emerald/50 text-emerald mt-0.5">2</div>
+                            <div class="ml-4">
+                                <h4 class="text-white text-sm font-semibold">Radical Reliability</h4>
+                                <p class="text-xs text-steel/60 mt-1">Systems engineered for 99.99% uptime. Built to outlast political cycles.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="py-24 border-t border-steel/5">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex justify-between items-end mb-12">
+            <h2 class="text-3xl font-light text-white">Intelligence & Research</h2>
+            <a href="#" class="hidden md:block text-emerald text-sm hover:underline">View all publications &rarr;</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <article class="group cursor-pointer">
+                <div class="aspect-video bg-slate mb-4 overflow-hidden relative">
+                     <div class="absolute inset-0 bg-emerald/10 group-hover:bg-emerald/20 transition-colors"></div>
+                     <svg class="absolute bottom-0 left-0 w-full h-12 text-emerald/40" preserveAspectRatio="none" viewBox="0 0 100 20"><path fill="currentColor" d="M0 20 L0 10 Q 20 5 40 12 T 100 5 L 100 20 Z"></path></svg>
+                </div>
+                <div class="flex items-center gap-3 mb-2 text-xs font-mono text-emerald">
+                    <span>Oct 2025</span>
+                    <span>•</span>
+                    <span>Whitepaper</span>
+                </div>
+                <h3 class="text-white text-lg font-medium group-hover:text-emerald transition-colors">The Sovereign Cloud</h3>
+                <p class="text-steel/60 text-sm mt-2">Why data residency is the new gold standard for African governance.</p>
+            </article>
+
+            <article class="group cursor-pointer">
+                <div class="aspect-video bg-slate mb-4 overflow-hidden relative">
+                    <div class="absolute inset-0 bg-emerald/10 group-hover:bg-emerald/20 transition-colors"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-16 h-16 border border-white/10 rounded-full flex items-center justify-center">
+                            <div class="w-2 h-2 bg-emerald rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 mb-2 text-xs font-mono text-emerald">
+                    <span>Sep 2025</span>
+                    <span>•</span>
+                    <span>Case Study</span>
+                </div>
+                <h3 class="text-white text-lg font-medium group-hover:text-emerald transition-colors">Scaling Identity</h3>
+                <p class="text-steel/60 text-sm mt-2">How we verified 10M citizens in 90 days with zero downtime.</p>
+            </article>
+            
+             <article class="group cursor-pointer">
+                <div class="aspect-video bg-slate mb-4 overflow-hidden relative">
+                    <div class="absolute inset-0 bg-emerald/10 group-hover:bg-emerald/20 transition-colors"></div>
+                    <div class="absolute top-2 left-4 text-[8px] font-mono text-white/20">
+                        101010101<br>010101010<br>110010101
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 mb-2 text-xs font-mono text-emerald">
+                    <span>Aug 2025</span>
+                    <span>•</span>
+                    <span>Technical</span>
+                </div>
+                <h3 class="text-white text-lg font-medium group-hover:text-emerald transition-colors">Algorithmic Trust</h3>
+                <p class="text-steel/60 text-sm mt-2">Reducing fraud in inter-bank settlements using pattern recognition.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+
+    <footer id="contact" class="bg-slate pt-24 pb-12 border-t border-steel/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+                <div>
+                    <h2 class="text-3xl text-white font-light mb-2">Initiate Collaboration</h2>
+                    <p class="text-steel/60 mb-8">Direct lines for enterprise and government inquiries.</p>
+                    <a href="mailto:nzorovemmanuel@gmail.com" class="text-emerald hover:text-white border-b border-emerald pb-1 transition-colors">Connect with Engineering</a>
+                </div>
+                <div class="grid grid-cols-2 gap-8 text-sm text-steel/60">
+                    <div>
+                        <h4 class="text-white font-bold mb-4">Locations</h4>
+                        <ul class="space-y-2">
+                            <li>Lagos, NG</li>
+                            <li>Abuja, NG</li>
+                            <li>Gboko, NG</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold mb-4">Legal</h4>
+                        <ul class="space-y-2">
+                            <li>Privacy Policy</li>
+                            <li>Terms of Service</li>
+                            <li>SLA Agreement</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-steel/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-xs text-steel/40 font-mono">© 2025 OmniNile Enterprise. All Systems Operational.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-steel/40 hover:text-emerald transition-colors"><span class="sr-only">GitHub</span>GitHub</a>
+                    <a href="#" class="text-steel/40 hover:text-emerald transition-colors"><span class="sr-only">LinkedIn</span>LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

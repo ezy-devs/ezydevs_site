@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your custom classes */
+.glass-nav {
+  background: rgba(11, 12, 16, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(197, 198, 199, 0.1);
+}
+
+.hero-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(69,162,158,0.08) 0%, rgba(11,12,16,0) 70%);
+}
