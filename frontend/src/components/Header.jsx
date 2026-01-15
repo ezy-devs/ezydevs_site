@@ -28,9 +28,10 @@ function Header() {
       </div>
 
       <div className="hidden md:block">
-        <a href="#contact" className="font-mono text-xs border border-emerald/50 px-5 py-2 hover:bg-emerald/10 transition-all text-emerald uppercase tracking-wider">
+        <Link
+              to="/partnership" className="font-mono text-xs border border-emerald/50 px-5 py-2 hover:bg-emerald/10 transition-all text-emerald uppercase tracking-wider">
           Enterprise Access
-        </a>
+        </Link>
       </div>
     </div>
   </div>

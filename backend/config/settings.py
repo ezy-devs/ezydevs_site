@@ -12,6 +12,11 @@ SECRET_KEY = 'django-insecure-!$mnsz7467s04-19vd2jr=a!@4r3@(c34=6fhp_*a4%q_eewnw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+if not DEBUG:
+    MEDIA_ROOT = '/var/data/media'
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    
 ALLOWED_HOSTS = ['ezydevstech.com', 'www.ezydevstech.com', '127.0.0.1', 'omninile.onrender.com', 'www.omninile.onrender.com', 'localhost']
 REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend', 'dist')
 
